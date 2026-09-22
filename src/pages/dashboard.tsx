@@ -1,28 +1,19 @@
-import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { LogOut, Sparkles } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
+import { usePageTitle } from "@/App";
+import { useAuthUser } from "@/components/protected-route";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/_authenticated/app")({
-  head: () => ({ meta: [
-    { title: "Dashboard — Video Speed Reader" },
-    { name: "description", content: "Your private Video Speed Reader dashboard." },
-    { property: "og:title", content: "Dashboard — Video Speed Reader" },
-    { property: "og:description", content: "Your private Video Speed Reader workspace." },
-    { property: "og:type", content: "website" },
-    { name: "twitter:card", content: "summary" },
-  ] }),
-  component: AppDashboard,
-});
-
-function AppDashboard() {
-  const { user } = Route.useRouteContext();
+export default function Dashboard() {
+  usePageTitle("Dashboard — Video Speed Reader");
+  const user = useAuthUser();
   const navigate = useNavigate();
 
   async function handleSignOut() {
     await supabase.auth.signOut();
-    navigate({ to: "/signin", replace: true });
+    navigate("/signin", { replace: true });
   }
 
   return (

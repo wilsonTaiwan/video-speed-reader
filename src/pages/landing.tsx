@@ -1,21 +1,8 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Captions, Clock3, ShieldCheck, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
+import { usePageTitle } from "@/App";
 import { Button } from "@/components/ui/button";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Video Speed Reader — Video to transcript in three minutes" },
-      { name: "description", content: "Upload a video and receive an accurate Chinese or English transcript in three minutes." },
-      { property: "og:title", content: "Video Speed Reader" },
-      { property: "og:description", content: "Upload your video, get a clean transcript in three minutes." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: LandingPage,
-});
 
 const features = [
   {
@@ -49,7 +36,9 @@ function Brand() {
   );
 }
 
-function LandingPage() {
+export default function Landing() {
+  usePageTitle("Video Speed Reader — Video to transcript in three minutes");
+
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 sm:px-8">
