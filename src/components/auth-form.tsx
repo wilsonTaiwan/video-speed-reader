@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { Loader2, Sparkles } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
@@ -30,7 +30,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       setError(result.error.message);
       return;
     }
-    navigate({ to: "/app", replace: true });
+    navigate("/app", { replace: true });
   }
 
   return (
